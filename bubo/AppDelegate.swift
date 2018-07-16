@@ -35,9 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         remoteCommandCenter.previousTrackCommand.addTarget(self, action: #selector(AppDelegate.handlePreviousTrackCommandEvent(event:)))
         
-        remoteCommandCenter.seekForwardCommand.addTarget(self, action: #selector(AppDelegate.handleSeekForwardCommandEvent(event:)))
-
-        remoteCommandCenter.seekBackwardCommand.addTarget(self, action: #selector(AppDelegate.handleSeekBackwardCommandEvent(event:)))
+//        remoteCommandCenter.seekForwardCommand.addTarget(self, action: #selector(AppDelegate.handleSeekForwardCommandEvent(event:)))
+//
+//        remoteCommandCenter.seekBackwardCommand.addTarget(self, action: #selector(AppDelegate.handleSeekBackwardCommandEvent(event:)))
 
     }
 
