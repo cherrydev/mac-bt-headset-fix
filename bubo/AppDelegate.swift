@@ -45,11 +45,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func doKey(key: Int, down: Bool) {
-        let flags = NSEventModifierFlags(rawValue: down ? 0xa00 : 0xb00)
+        let flags = NSEvent.ModifierFlags(rawValue: down ? 0xa00 : 0xb00)
         let data1 = (key << 16) | ((down ? 0xa : 0xb) << 8)
         
         let ev = NSEvent.otherEvent(
-            with: NSEventType.systemDefined,
+            with: NSEvent.EventType.systemDefined,
             location: NSPoint(x:0.0, y:0.0),
             modifierFlags: flags,
             timestamp: TimeInterval(0),
@@ -65,34 +65,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
 
-    func handlePlayPauseCommandEvent(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc func handlePlayPauseCommandEvent(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         doKey(key: NX_KEYTYPE_PLAY, down: true)
         doKey(key: NX_KEYTYPE_PLAY, down: false)
         
         return .success
     }
     
-    func handleNextTrackCommandEvent(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc func handleNextTrackCommandEvent(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         doKey(key: NX_KEYTYPE_NEXT, down: true)
         doKey(key: NX_KEYTYPE_NEXT, down: false)
         
         return .success
     }
     
-    func handlePreviousTrackCommandEvent(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc func handlePreviousTrackCommandEvent(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         doKey(key: NX_KEYTYPE_PREVIOUS, down: true)
         doKey(key: NX_KEYTYPE_PREVIOUS, down: false)
         
         return .success
     }
     
-    func handleSeekForwardCommandEvent(event: MPSeekCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc func handleSeekForwardCommandEvent(event: MPSeekCommandEvent) -> MPRemoteCommandHandlerStatus {
         doKey(key: NX_KEYTYPE_FAST, down: true)
         
         return .success
     }
     
-    func handleSeekBackwardCommandEvent(event: MPSeekCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc func handleSeekBackwardCommandEvent(event: MPSeekCommandEvent) -> MPRemoteCommandHandlerStatus {
         doKey(key: NX_KEYTYPE_REWIND, down: true)
         
         return .success
